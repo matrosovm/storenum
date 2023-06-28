@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package storenum;
+
+option go_package = "https://github.com/matrosovm/storenum/api/storenum;storenum";
+
+import "proto/google/api/annotations.proto";
+
+service Storenum {
+  rpc currentNumber(CurrentNumberRequest) returns(CurrentNumberResponse) {
+    option (google.api.http) = {
+      get: "/current_number"
+    };
+  }
+
+  rpc addNumber(AddNumberRequest) returns(AddNumberResponse) {
+    option (google.api.http) = {
+      post: "/add_number"
+      body: "*"
+    };
+  }
+
+  rpc setNumber (SetNumberRequest) returns(SetNumberResponse) {
+    option (google.api.http) = {
+        post: "/set_number"
+        body: "*"
+    };
+  } 
+}
+
+message CurrentNumberRequest {
+}
+  
+message CurrentNumberResponse {
+    string number = 1;
+}
+
+message AddNumberRequest {
+    string number = 1;
+}
+  
+message AddNumberResponse {
+    string number = 2;
+}
+  
+message SetNumberRequest {
+    string number = 1;
+}
+
+message SetNumberResponse {
+}

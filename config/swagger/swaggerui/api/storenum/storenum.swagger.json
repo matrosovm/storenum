@@ -1,0 +1,170 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/storenum/storenum.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Storenum"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/add_number": {
+      "post": {
+        "operationId": "Storenum_addNumber",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/storenumAddNumberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/storenumAddNumberRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Storenum"
+        ]
+      }
+    },
+    "/current_number": {
+      "get": {
+        "operationId": "Storenum_currentNumber",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/storenumCurrentNumberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Storenum"
+        ]
+      }
+    },
+    "/set_number": {
+      "post": {
+        "operationId": "Storenum_setNumber",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/storenumSetNumberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/storenumSetNumberRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Storenum"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "storenumAddNumberRequest": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        }
+      }
+    },
+    "storenumAddNumberResponse": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        }
+      }
+    },
+    "storenumCurrentNumberResponse": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        }
+      }
+    },
+    "storenumSetNumberRequest": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        }
+      }
+    },
+    "storenumSetNumberResponse": {
+      "type": "object"
+    }
+  }
+}
