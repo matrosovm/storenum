@@ -2,6 +2,7 @@ package storenum
 
 import (
 	"context"
+	"fmt"
 	"math/big"
 
 	"github.com/matrosovm/storenum/internal/pkg/helper"
@@ -17,6 +18,10 @@ func (s *Service) AddNumber(
 	number, ok := number.SetString(req.GetNumber(), 10)
 	if !ok {
 		return &pbStorenum.AddNumberResponse{}, &helper.ErrorFormat{}
+	}
+
+	if number.Cmp(big.NewInt(0)) != 1 {
+		return &pbStorenum.AddNumberResponse{}, fmt.Errorf("number must be natural")
 	}
 
 	s.Lock()

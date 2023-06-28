@@ -11,7 +11,7 @@ import (
 type Service struct {
 	pbStorenum.UnimplementedStorenumServer
 	sync.RWMutex
-	
+
 	store database.Store
 }
 

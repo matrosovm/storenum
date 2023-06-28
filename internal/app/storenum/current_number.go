@@ -13,7 +13,7 @@ func (s *Service) CurrentNumber(
 ) (*pbStorenum.CurrentNumberResponse, error) {
 	s.RLock()
 	defer s.RUnlock()
-	
+
 	number, err := s.store.GetNumber()
 	if err != nil {
 		return &pbStorenum.CurrentNumberResponse{}, err

@@ -2,6 +2,7 @@ package storenum
 
 import (
 	"context"
+	"fmt"
 	"math/big"
 
 	"github.com/matrosovm/storenum/internal/pkg/helper"
@@ -17,6 +18,10 @@ func (s *Service) SetNumber(
 	number, ok := number.SetString(req.GetNumber(), 10)
 	if !ok {
 		return &pbStorenum.SetNumberResponse{}, &helper.ErrorFormat{}
+	}
+
+	if number.Cmp(big.NewInt(0)) == -1 {
+		return &pbStorenum.SetNumberResponse{}, fmt.Errorf("number must be non-negative")
 	}
 
 	s.Lock()
